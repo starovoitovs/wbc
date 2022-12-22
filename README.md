@@ -1,6 +1,6 @@
 # White blood cell classification
 
-We used a modification of an [[adversarial algorithm with Margin Disparity Discrepancy (MDD) loss]](http://proceedings.mlr.press/v97/zhang19i/zhang19i.pdf) for a domain
+We used a modification of an [adversarial algorithm with Margin Disparity Discrepancy (MDD) loss](http://proceedings.mlr.press/v97/zhang19i/zhang19i.pdf) for a domain
 adaptation task presented in the 2022 [HIDA hackathon "Help A Hematologist Out"](https://www.helmholtz-hida.de/en/events/data-challenge-help-a-hematologist-out/).
  
 The model can be found in `models/mdd.py`.
@@ -13,17 +13,18 @@ We adapted the algorithm for the unsupervised DA setup and introduced SND and en
 
 Run this command from the root of `tlda`:
 
-    PYTHONPATH=/home/tmp/starokon/projects/tllib \
+    PYTHONPATH=/home/tmp/starokon/projects/wbc \
         CUDA_VISIBLE_DEVICES=0 \
         python models/mdd.py \
         Datasets \
         -d WBC \
-        --source A M --target W \
+        --source AM --target W \
         -a resnet18 \
         --epochs 300 \
         --iters-per-epoch 100 \
         --seed 1 \
-        --log logs/WBC_AM2W \
+        --log logs/final \
+        --temperature 5e-3 \
         --margin 4 \
         --trade-off 1 \
         --phase train
